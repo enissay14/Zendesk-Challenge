@@ -15,7 +15,7 @@ angular.module('zendeskChallengeApp')
     honeyPotRepository.findById= function(id){
             
             var deferred = $q.defer();
-            $http.get('/honeypot.php?id='+ id )
+            $http.get('honeypot.php?id='+ id )
             .success(function(data) { 
                 deferred.resolve(data);
             }).error(function(error) {
@@ -29,7 +29,7 @@ angular.module('zendeskChallengeApp')
     honeyPotRepository.findByIP = function(ip){
             
             var deferred = $q.defer();
-            $http.get('/honeypot.php?ip='+ ip )
+            $http.get('honeypot.php?ip='+ ip )
             .success(function(data) { 
                 deferred.resolve(data);
             }).error(function(error) {
@@ -44,7 +44,7 @@ angular.module('zendeskChallengeApp')
             
             var deferred = $q.defer();
 //             $http.get(appSettings.db + '/_design/honeypot/_view/byPort?key='+ port)
-            $http.get('/honeypot.php?port='+port)
+            $http.get('honeypot.php?port='+port)
             .success(function(data) { 
                 deferred.resolve(data);
             }).error(function(error) {
@@ -58,7 +58,7 @@ angular.module('zendeskChallengeApp')
         honeyPotRepository.findByUrl = function(url){
             
             var deferred = $q.defer();
-            $http.get('/honeypot.php?url='+ url )
+            $http.get('honeypot.php?url='+ url )
             .success(function(data) { 
                 deferred.resolve(data);
             }).error(function(error) {
