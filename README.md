@@ -17,7 +17,7 @@ The script *json_to_couchdb_sample.py* is a variant where you can specify the nu
 
 After the import of the json data to the database the design document `views_honeypot` should be added too. It contains some views (map functions) that create indexes on Ip adress, port and url.
 
-A working preview of the application can be found here: http://heyrecruiters.com/zendesk-challenge
+A working demo of the application can be found here: http://heyrecruiters.com/zendesk-challenge
 
 
 
