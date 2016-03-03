@@ -100,13 +100,13 @@ angular.module('zendeskChallengeApp')
                                 //Infinite Scroll: Show initialy only 10 rows 
                                 $scope.data = $scope.results.slice(0, 10);
                         }, function(reason) {
-                                alert(reason);
+                                console.log(reason);
                         });
             }
        
             
         }, function(reason) {
-                alert(reason);
+                console.log(reason);
         });
     
     
@@ -137,7 +137,7 @@ angular.module('zendeskChallengeApp')
             
             
         }, function(reason) {
-                alert(reason);
+                console.log(reason);
         });
         
         $q.all(phishTankPromises)
