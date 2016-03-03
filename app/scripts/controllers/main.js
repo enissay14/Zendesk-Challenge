@@ -143,7 +143,6 @@ angular.module('zendeskChallengeApp')
         $q.all(phishTankPromises)
         .then(function (data){
             $scope.phishtank = data[0];
-            console.log(data[0]);
         },function(reason){
             console.log(reason);
         });
