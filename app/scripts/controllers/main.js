@@ -114,22 +114,22 @@ angular.module('zendeskChallengeApp')
         .then(function (data){
             spinnerService.hide('dshieldSpinner');
             for(var i = 0; i < dShieldPromises.length; i++){
-                console.log(data[0]);
-                if(data[i].hasOwnProperty('ip')){
+                data = JSON.parse(data[i].slice(0, -1));
+                if(data.hasOwnProperty('ip')){
                     var result = {};
-                    result.attackerIP =  data[i].ip.number;
-                    result.attackerPort = data[i].ip.as;
+                    result.attackerIP =  data.ip.number;
+                    result.attackerPort = data.ip.as;
                     result.source = "DShield API";
-                    result.time = data[i].ip.updated;
+                    result.time = data.ip.updated;
                     $scope.results.push(result);
                     
                     //DShield API IP Adress Info
-                    $scope.dshieldIP = {count: data[i].ip.count,attacks: data[i].ip.attacks, name: data[i].ip.asname, country: data[i].ip.ascountry};
+                    $scope.dshieldIP = {count: data.ip.count,attacks: data.ip.attacks, name: data.ip.asname, country: data.ip.ascountry};
                 }
-                if(data[i].hasOwnProperty('data')){
+                if(data.hasOwnProperty('data')){
                     $scope.results.push(result);
                     //DShield API Port Info
-                    $scope.dshieldPort = {records: data[i].data.records,sources: data[i].data.sources, targets : data[i].data.targets, tcp: data[i].data.tcp, udp: data[i].data.udp, date: data[i].data.date};
+                    $scope.dshieldPort = {records: data.data.records,sources: data.data.sources, targets : data.data.targets, tcp: data.data.tcp, udp: data.data.udp, date: data.data.date};
                     
                 }
                     

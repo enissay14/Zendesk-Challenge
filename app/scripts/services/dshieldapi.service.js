@@ -17,7 +17,8 @@ angular.module('zendeskChallengeApp')
     dShieldApiRepository.findByIP = function(ip){
             
             var deferred = $q.defer();
-            $http.get('http://isc.sans.edu/api/ip/'+ ip +'?json')
+//             $http.get('http://isc.sans.edu/api/ip/'+ ip +'?json')
+            $http.get('dshield.php?ip='+ip)
             .success(function(data) { 
                 deferred.resolve(data);
             }).error(function(error) {
@@ -31,7 +32,8 @@ angular.module('zendeskChallengeApp')
         dShieldApiRepository.findByPort = function(port){
             
             var deferred = $q.defer();
-            $http.get('http://isc.sans.edu/api/port/'+ port +'?json')
+//             $http.get('http://isc.sans.edu/api/port/'+ port +'?json')
+            $http.get('dshield.php?port='+port)
             .success(function(data) { 
                 deferred.resolve(data);
             }).error(function(error) {
