@@ -1,0 +1,51 @@
+<h1>IOC LookUp</h1>
+<div class="input-group">
+    <input type="text" placeholder="Adress IP" id="field_ip" ng-model="ioc.ip"></input>
+    <input type="text" placeholder="Port" id="field_port" ng-model="ioc.port"></input>
+    <input type="text" placeholder="Url" id="field_url" ng-model="ioc.url"></input>
+    <div class="btn-group btn-group-sm" role="group" >
+        <button type="button" class="btn btn-default" ng-click="iocLookUp()">Search</button>
+    </div>
+</div>
+<div class="row marketing">
+    <br>
+    <uib-tabset active="activeJustified" justified="true">
+    <uib-tab index="0" heading="Honeypot">
+        <div infinite-scroll="getMoreData()">
+            <table class="table table-striped" at-table at-list="data" at-config="config">
+            <thead></thead>
+            <tbody>
+                <tr>
+                <td at-implicit at-attribute="attackerIP" at-sortable></td>
+                <td at-implicit at-attribute="attackerPort" at-sortable></td>
+                <td at-implicit at-attribute="victimIP" at-sortable></td>
+                <td at-implicit at-attribute="victimPort" at-sortable></td>
+                <td at-implicit at-attribute="source" at-sortable></td>
+                <td at-attribute="time" at-sortable>{{ item.time | date }}</td>
+                </tr>
+                <spinner name="honeypotSpinner" img-src="images/bx_loader.gif"></spinner>
+            </tbody>
+            </table>    
+        </div>
+    </uib-tab>
+    <uib-tab index="1" heading="DShield API Analytics">
+        <spinner name="dshieldSpinner" img-src="images/bx_loader.gif"></spinner>
+        <div class="ip-info" ng-show="ipInfo" ng-show="sources.dShieldApi">
+            <p>Total number of packets blocked from this IP: {{dshieldIP.count}}</p>
+            <p>Number of unique destination IP addresses for these packets: {{dshieldIP.attacks}}</p>
+            <p>Name: {{dshieldIP.name}}</p>
+            <p>Country: {{dshieldIP.country}}</p>
+        </div>
+        <div class="port-info" ng-show="portInfo" ng-show="sources.dShieldApi">
+            <p>Total number of records for a given date({{dshieldPort.date}}) : {{dshieldPort.records}}</p>
+            <p>Number of unique destination IP addresses : {{dshieldPort.targets}}</p>
+            <p>Number of unique originating IPs : {{dshieldPort.sources}}</p>
+            <p>TCP: {{dshieldPort.tcp}}</p>
+            <p>UDP: {{dshieldPort.udp}}</p>
+        </div>
+    </uib-tab>
+    <uib-tab index="2" heading="PhishTank">
+        Long Labeled Justified content
+    </uib-tab>
+  </uib-tabset>
+</div>

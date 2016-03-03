@@ -1,0 +1,54 @@
+{
+    "_id":"_design/honeypot",
+    "views": {
+        "byIP": {
+            "map": "function (doc){
+                    if(doc.attackerIP){
+                        emit(doc.attackerIP, doc._id);
+                    }
+                    if(doc.victimIP){
+                        emit(doc.victimIP, doc._id);
+                    }
+                    if (doc.source) {
+                        emit(doc.source[0], doc._id);
+                    }
+                }"
+        },
+        "byPort": {
+             "map": "function (doc){
+                        if(doc.attackerPort){
+                                emit(doc.attackerPort, doc._id);
+                            }
+                             if(doc.victimPort){
+                                emit(doc.victimPort, doc._id);
+                            }
+                        if (doc.source) {
+                            emit(doc.source[1], doc._id);
+                        }
+                    }"
+        },
+        "byRequestUrl": {
+             "map": "function (doc){
+                        if(doc.request_url){
+                            emit(doc.request_url, doc._id);
+                        }
+                    }"
+        }
+    }
+}
+
+JSON Valid version to push as document to CouchDB Database:
+{
+   "_id": "_design/honeypot",
+   "views": {
+       "byIP": {
+           "map": "function (doc){if(doc.attackerIP){emit(doc.attackerIP, doc._id);}if(doc.victimIP){emit(doc.victimIP, doc._id);}if (doc.source){emit(doc.source[0], doc._id);}}"
+       },
+       "byPort": {
+           "map": "function (doc){if(doc.attackerPort){emit(doc.attackerPort,doc._id);}if(doc.victimPort){emit(doc.victimPort,doc._id);}if (doc.source) {emit(doc.source[1], doc._id);}}"
+       },
+       "byRequestUrl": {
+           "map": "function (doc){if(doc.request_url){emit(doc.request_url,doc._id);}}"
+       }
+   }
+}
